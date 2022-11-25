@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <color name="scarlet_700">#9C254D</color>
+    <color name="scarlet_500">#D23369</color>
+    <color name="scarlet_200">#F06292</color>
+    <color name="violet_700">#2A3990</color>
+    <color name="violet_200">#606FC6</color>
 </resources>
