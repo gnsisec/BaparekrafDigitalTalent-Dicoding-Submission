@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -49,5 +50,20 @@ class MainActivity : AppCompatActivity() {
         rvPokemon.layoutManager = GridLayoutManager(this, 2)
         val listPokemonAdapter = GridPokemonAdapter(list_pokemon)
         rvPokemon.adapter = listPokemonAdapter
+
+        listPokemonAdapter.setOnItemClickCallback(object: GridPokemonAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: Pokemon) {
+                showSelectedPokemon(data)
+            }
+        })
+    }
+
+    private fun showSelectedPokemon(pokemon: Pokemon) {
+        val detailPokemon = Intent(this@MainActivity, DetailPokemon::class.java)
+        detailPokemon.putExtra(DetailPokemon.POKEMON_NAME, pokemon.name)
+        detailPokemon.putExtra(DetailPokemon.POKEMON_PHOTO, pokemon.img)
+        detailPokemon.putExtra(DetailPokemon.POKEMON_TYPE, pokemon.type)
+        detailPokemon.putExtra(DetailPokemon.POKEMON_DESC, pokemon.desc)
+        startActivity(detailPokemon)
     }
 }

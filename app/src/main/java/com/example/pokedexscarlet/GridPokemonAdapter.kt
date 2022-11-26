@@ -12,6 +12,12 @@ import com.bumptech.glide.request.RequestOptions
 class GridPokemonAdapter(val listPokemon: ArrayList<Pokemon>)
     : RecyclerView.Adapter<GridPokemonAdapter.GridViewHolder>() {
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     inner class GridViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var pokemonName: TextView = itemView.findViewById(R.id.name_pokedex_list)
         var pokemonImage: ImageView = itemView.findViewById(R.id.img_pokedex_list)
@@ -29,9 +35,17 @@ class GridPokemonAdapter(val listPokemon: ArrayList<Pokemon>)
             .into(holder.pokemonImage)
 
         holder.pokemonName.text = listPokemon[position].name
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(listPokemon[holder.adapterPosition])
+        }
     }
 
     override fun getItemCount(): Int {
         return listPokemon.size
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Pokemon)
     }
 }

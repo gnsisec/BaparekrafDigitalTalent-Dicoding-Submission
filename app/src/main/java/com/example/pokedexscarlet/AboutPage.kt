@@ -10,6 +10,7 @@ class AboutPage : AppCompatActivity() {
         setContentView(R.layout.activity_about_page)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
         android.R.id.home -> {
